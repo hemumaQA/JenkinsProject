@@ -1,0 +1,4 @@
+org\wbl\AppTest.class
+org\wbl\JacksonLibrary\JsonToObject.class
+org\wbl\JacksonLibrary\ObjectToJson.class
+org\wbl\JacksonLibrary\Users.class
