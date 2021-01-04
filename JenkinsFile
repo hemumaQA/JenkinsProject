@@ -1,0 +1,26 @@
+node {
+    stage('checkout') {
+         git 'https://github.com/hemumaQA/JenkinsProject.git'
+
+}
+   
+stage('compile,test,package') {
+     bat 'mvn clean package'
+}
+   
+    stage('archieve') {
+         archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
+         step([$class: 'Publisher'])
+    
+}
+    stage('email notifications'){
+        emailext body: '', subject: '', to: 'hemuma85@gmail.com'
+        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+    
+    }
+
+   
+    
+}
+properties([pipelineTriggers([githubPush()])])
+
